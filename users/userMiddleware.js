@@ -36,7 +36,8 @@ function validateCredentials(req, res, next) {
 }
 
 function restricted(req, res, next) {
-    if (req.token) {
+    console.log(req.rawHeaders);
+    if (req.rawHeaders.includes('token')) {
         next();
     } else {
         res.status(401).json({ message: 'you shall not pass!!' });

@@ -31,9 +31,9 @@ router.post('/register', uMid.validateUser, (req, res) => {
 router.post('/login', uMid.validateUser, uMid.validateCredentials, (req, res) => {
   let { username, password } = req.body;
 
-  console.log('req.body', req.body);
+  console.log('req.body', {username});
 
-  Users.findBy({ username })
+  Users.findBy(username)
     .then(user => {
       console.log(user);
       if (user && bcrypt.compareSync(password, user.password)) {
